@@ -91,6 +91,12 @@ config BOOTCOUNT_AT91
 	bool "Boot counter for Atmel AT91SAM9XE"
 	depends on AT91SAM9XE
 
+config BOOTCOUNT_MTK_MISC
+	bool "Support bootcounter stored in MediaTek misc partition"
+	help
+	  Enabling eMMC based bootcount, bootcounter will be stored in a
+	   binary blob located in misc partition of the eMMC main storage
+
 config DM_BOOTCOUNT
         bool "Boot counter in a device-model device"
 	help
