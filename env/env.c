@@ -277,20 +277,20 @@ int env_reload(void)
 int env_save(void)
 {
 	struct env_driver *drv;
+	int prio;
+    int ret = 0;
 
-	drv = env_driver_lookup(ENVOP_SAVE, gd->env_load_prio);
-	if (drv) {
-		int ret;
+	for (prio = 0; (drv = env_driver_lookup(ENVOP_SAVE, prio)); prio++) {
 
 		printf("Saving Environment to %s... ", drv->name);
 		if (!drv->save) {
 			printf("not possible\n");
-			return -ENODEV;
+			continue;
 		}
 
 		if (!env_has_inited(drv->location)) {
 			printf("not initialized\n");
-			return -ENODEV;
+			continue;
 		}
 
 		ret = drv->save();
@@ -298,27 +298,24 @@ int env_save(void)
 			printf("Failed (%d)\n", ret);
 		else
 			printf("OK\n");
-
-		if (!ret)
-			return 0;
 	}
 
-	return -ENODEV;
+	return (ret) ? -ENODEV : ret;
 }
 
 int env_erase(void)
 {
 	struct env_driver *drv;
+	int prio;
+    int ret = 0;
 
-	drv = env_driver_lookup(ENVOP_ERASE, gd->env_load_prio);
-	if (drv) {
-		int ret;
+	for (prio = 0; (drv = env_driver_lookup(ENVOP_ERASE, prio)); prio++) {
 
 		if (!drv->erase)
-			return -ENODEV;
+			continue;
 
 		if (!env_has_inited(drv->location))
-			return -ENODEV;
+			continue;
 
 		printf("Erasing Environment on %s... ", drv->name);
 		ret = drv->erase();
@@ -326,12 +323,9 @@ int env_erase(void)
 			printf("Failed (%d)\n", ret);
 		else
 			printf("OK\n");
-
-		if (!ret)
-			return 0;
 	}
 
-	return -ENODEV;
+	return (ret) ? -ENODEV : ret;
 }
 
 int env_init(void)
