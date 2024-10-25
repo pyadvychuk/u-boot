@@ -9,6 +9,7 @@ obj-$(CONFIG_BOOTCOUNT_ENV)	+= bootcount_env.o
 obj-$(CONFIG_BOOTCOUNT_I2C)	+= bootcount_i2c.o
 obj-$(CONFIG_BOOTCOUNT_EXT)	+= bootcount_ext.o
 obj-$(CONFIG_BOOTCOUNT_AM33XX_NVMEM)	+= bootcount_nvmem.o
+obj-$(CONFIG_BOOTCOUNT_MTK_MISC)	+= bootcount_mtk_misc.o
 
 obj-$(CONFIG_DM_BOOTCOUNT)      += bootcount-uclass.o
 obj-$(CONFIG_DM_BOOTCOUNT_PMIC_PFUZE100) += pmic_pfuze100.o
