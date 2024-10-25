@@ -18,6 +18,7 @@ obj-$(CONFIG_ENV_IS_IN_NVRAM) += embedded.o
 obj-$(CONFIG_ENV_IS_IN_NVRAM) += nvram.o
 obj-$(CONFIG_ENV_IS_IN_ONENAND) += onenand.o
 obj-$(CONFIG_ENV_IS_IN_SATA) += sata.o
+obj-$(CONFIG_ENV_IS_IN_MTK_MISC) += mtk_misc_restricted.o mtk_misc_utils.o
 obj-$(CONFIG_ENV_IS_IN_REMOTE) += remote.o
 obj-$(CONFIG_ENV_IS_IN_UBI) += ubi.o
 endif

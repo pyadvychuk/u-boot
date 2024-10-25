@@ -362,6 +362,13 @@ config ENV_IS_IN_SPI_FLASH
 	  during a "saveenv" operation. CONFIG_ENV_OFFSET_REDUND must be
 	  aligned to an erase sector boundary.
 
+config ENV_IS_IN_MTK_MISC
+	bool "Restrictrd environment is in binary blob on MMC partition misc"
+	depends on MMC
+	help
+	  Define this if you want to save a restricted set of
+	  environment variables to special MMC partition defined by MediaTek SDK.
+
 config ENV_SECT_SIZE_AUTO
 	bool "Use automatically detected sector size"
 	depends on ENV_IS_IN_SPI_FLASH

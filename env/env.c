@@ -90,6 +90,9 @@ static enum env_location env_locations[] = {
 #ifdef CONFIG_ENV_IS_NOWHERE
 	ENVL_NOWHERE,
 #endif
+#ifdef CONFIG_ENV_IS_IN_MTK_MISC
+       ENVL_MTK_MISC,
+#endif
 };
 
 static bool env_has_inited(enum env_location location)
@@ -212,9 +215,9 @@ int env_load(void)
 			printf("OK\n");
 			gd->env_load_prio = prio;
 
-#if !CONFIG_IS_ENABLED(ENV_APPEND)
-			return 0;
-#endif
+// #if !CONFIG_IS_ENABLED(ENV_APPEND)
+// 			return 0;
+// #endif
 		} else if (ret == -ENOMSG) {
 			/* Handle "bad CRC" case */
 			if (best_prio == -1)
