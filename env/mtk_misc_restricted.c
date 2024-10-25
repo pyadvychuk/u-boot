@@ -61,6 +61,7 @@ static void env_mtk_misc_var2env(struct mtk_misc_data *buf)
         else if (!strncmp(var->name, "bootcount", strlen(var->name)))
             env_set_ulong(var->name, buf->bootcount);
     }
+    env_set("altbootcmd", "rollback_sysupgrade");
 }
 
 static void env_mtk_misc_env2var(struct mtk_misc_data *buf)
